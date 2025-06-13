@@ -1,18 +1,27 @@
-export const Card2 = ({title = "タイトルなし", bgColor = "yellow"} : {title?: string, bgColor?: string}) => {
+export const Card2 = ({
+        title = "タイトルなし",
+        bgColor = "yellow",
+        children
+        } : {title? :string, bgColor? :string, children? :any}) => {
     return (
-        <div
-            style={{
-                backgroundColor: bgColor,
-                borderRadius: "20px",
-                width: "200px",
-                textAlign: "center",
-                padding: "20px 20px",
-                color: "pink",
-            }}
-            onClick={() => test("こんにちは")}
-        >
-                {title}
-        </div>
+        <>
+            <div
+                style={{
+                    backgroundColor: bgColor,
+                    borderRadius: "20px",
+                    width: "200px",
+                    textAlign: "center",
+                    padding: "20px 20px",
+                    color: "pink",
+                }}
+                onClick={() => test("こんにちは")}
+            >
+                    {title}
+                    <div onClick={() => alert("こんにちは")}>
+                        {children}
+                    </div>
+            </div>
+        </>
     )
 }
 

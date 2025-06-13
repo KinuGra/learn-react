@@ -5,17 +5,19 @@ type props = {
 
 export const Card = (props :props) => {
     return (
-        <div
-            style={{
-                backgroundColor: props.bgColor,
-                borderRadius: "20px",
-                width: "200px",
-                textAlign: "center",
-                padding: "20px 20px"
-            }}
-            onClick={() => test("こんにちは")}
-        >
-                {props.title}
+        <div>
+            <div
+                style={{
+                    backgroundColor: props.bgColor,
+                    borderRadius: "20px",
+                    width: "200px",
+                    textAlign: "center",
+                    padding: "20px 20px"
+                }}
+                onClick={() => test("こんにちは")}
+            >
+                    {props.title}
+            </div>
         </div>
     )
 }
