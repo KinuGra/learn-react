@@ -1,4 +1,8 @@
-import './static/App.css'
+import './static/App.css';
+import './js/chara.js';
+import {add, chara, g_name} from "./js/chara.js"
+import { Card } from './components/Card';
+import { Card2 } from './components/Card2';
 
 const style = {
   // color: "blue",
@@ -28,6 +32,13 @@ function App() {
       <div><a href={url}>Google</a></div>
 
       <div>{obj.name}, {obj.num}</div>
+
+      <div>{add(10, 20)}, {chara.atk}, {g_name}</div>
+
+      <div style={{color: "white"}}>
+        <Card title="App.tsxから呼び出し" bgColor="#000" />
+      </div>
+      <Card2 />
     </div>
   );
 }
