@@ -5,6 +5,7 @@ import {add, chara, g_name} from "./js/chara.js"
 import { Card } from './components/Card';
 import { Card2 } from './components/Card2';
 import LoggedIn from './components/LoggedIn';
+import { BarButton } from './components/BarButton';
 
 const style = {
   // color: "blue",
@@ -30,21 +31,8 @@ function App() {
 
   return (
     <div>
-      <div className="bg-red" style={style}>Hello</div>
-      <div style={{backgroundColor: "blue"}}>World</div>
 
-      {/* public内の画像は/で指定、閉じタグが必要 */}
-      <img src="/logo192.png"></img>
-      <h1>Hello, {name}</h1>
-
-      {/* Reactは useState で管理されている値が変わると、
-      自動的にそのコンポーネントを再描画してくれます。
-      let などの通常の変数はこれに反応しません。 */}
-      <button onClick={() => {name = "masuda"}}>Clickしてください</button>
-
-      <div><a href={url}>Google</a></div>
-
-      {/* React入門2 */}
+{/* React入門2 */}
 
       {!isLoggedIn && (
         <div style={{margin: "20px"}}>
@@ -80,7 +68,28 @@ function App() {
         )}
       </div>
 
-      {/* React入門2ここまで */}
+      <BarButton role="admin" />
+      <BarButton role="user" />
+      <BarButton role="elseelsehoge" />
+
+{/* React入門2ここまで */}
+
+
+{/* React入門1 */}
+
+      <div className="bg-red" style={style}>Hello</div>
+      <div style={{backgroundColor: "blue"}}>World</div>
+
+      {/* public内の画像は/で指定、閉じタグが必要 */}
+      <img src="/logo192.png"></img>
+      <h1>Hello, {name}</h1>
+
+      {/* Reactは useState で管理されている値が変わると、
+      自動的にそのコンポーネントを再描画してくれます。
+      let などの通常の変数はこれに反応しません。 */}
+      <button onClick={() => {name = "masuda"}}>Clickしてください</button>
+
+      <div><a href={url}>Google</a></div>
 
       <div>{obj.name}, {obj.num}</div>
 
@@ -90,6 +99,9 @@ function App() {
         <Card title="App.tsxから呼び出し" bgColor="#000" />
       </div>
       <Card2 />
+
+{/* React入門1はここまで */}
+
     </div>
   );
 }
