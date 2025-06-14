@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react';
 import TodoList from './TodoList.js'
 import { v4 as uuidv4 } from 'uuid';
+import { Weather } from './features/Weather.js';
+import "./features/getWeather.js"
+import { getWeather } from './features/getWeather.js';
 
 function App() {
   const [todos, setTodos] = useState([
@@ -10,6 +13,7 @@ function App() {
 
   // inputの値を簡単に取得できる
   const todoNameRef = useRef();
+  const cityRef = useRef();
 
   const handleAddTodo = () => {
     // タスクを追加
@@ -20,6 +24,26 @@ function App() {
     })
     todoNameRef.current.value = null;
   };
+
+  const handleAddWeather = async () => {
+    let data;
+
+    if(cityRef.current.value === "東京") {
+      data = await getWeather("130010")
+    } else if(cityRef.current.value === "大阪") {
+      data = await getWeather("270000")
+    } else {
+      return;
+    }
+
+    const today = data.forecasts[0];
+    const text = data.title + " : " + today.date + ", " + today.telop;
+
+    // 実際にタスクを追加する処理
+    setTodos((prev) => {
+      return[...prev, {id: uuidv4(), name:text, completed: false}]
+    })
+  }
 
   const toggleTodo = (id) => {
     const newTodos = [...todos];
@@ -47,11 +71,18 @@ function App() {
 
   return (
     <div>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input type="text" ref={todoNameRef} />
       <button onClick={handleAddTodo}>タスクを追加</button>
       <button onClick={() => handleClear()}>完了したタスクの削除</button>
       <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
+      <div>
+        <input type="text" ref={cityRef}></input>
+
+        {/* propsで渡しているだけなのでhandleAddWeatherを発火させるには
+          　渡されたコンポーネント内で発火させる必要がある */}
+        <Weather onClick={handleAddWeather}/>
+      </div>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
     </div>
   );
 }
