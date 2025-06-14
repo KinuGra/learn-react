@@ -72,15 +72,15 @@ function App() {
   return (
     <div>
       <input type="text" ref={todoNameRef} />
-      <button onClick={handleAddTodo}>タスクを追加</button>
-      <button onClick={() => handleClear()}>完了したタスクの削除</button>
-      <div>残りのタスク:{todos.filter((todo) => !todo.completed).length}</div>
+      <button onClick={handleAddTodo} style={buttonStyle}>add</button>
+      <button onClick={() => handleClear()} style={buttonStyle}>checked task clear</button>
+      ramaining task:{todos.filter((todo) => !todo.completed).length}
       <div>
-        <input type="text" ref={cityRef}></input>
+        <input type="text" ref={cityRef} style={{padding: "5px", borderRadius: "5px"}}></input>
 
         {/* propsで渡しているだけなのでhandleAddWeatherを発火させるには
           　渡されたコンポーネント内で発火させる必要がある */}
-        <Weather onClick={handleAddWeather}/>
+        <Weather onClick={handleAddWeather} style={buttonStyle} />
       </div>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
     </div>
@@ -88,3 +88,10 @@ function App() {
 }
 
 export default App;
+
+const buttonStyle = {
+  borderRadius: "10px",
+  padding: "5px 10px",
+  backgroundColor: "black",
+  color: "white",
+}
